@@ -51,4 +51,16 @@ class ListProductModel extends Model{
 
     notifyListeners();
   }
+
+  void updateList({ProductListList productList}){
+    lista.title = productList.title;
+    lista.description = productList.description;
+    lista.data = productList.data;
+
+
+    Firestore.instance.collection("users").document(user.firebaseUser.uid).collection("lists")
+        .document(productList.lid).updateData(productList.toMap());
+
+    notifyListeners();
+  }
 }

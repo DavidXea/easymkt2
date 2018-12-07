@@ -1,25 +1,26 @@
 import 'dart:async';
 
 import 'package:easymkt2/Class/ShoppingList.dart';
+import 'package:easymkt2/datas/list_list_product.dart';
 import 'package:easymkt2/models/list_list_model.dart';
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-class addListPage extends StatefulWidget {
+class AddListPage extends StatefulWidget {
 
-  final ShoppingList list;
+  final ProductListList list;
 
-  addListPage({this.list});
+  AddListPage({this.list});
 
   @override
-  _addListPageState createState() => _addListPageState();
+  _AddListPageState createState() => _AddListPageState();
 }
 
-class _addListPageState extends State<addListPage> {
+class _AddListPageState extends State<AddListPage> {
 
-  final _nameController = TextEditingController();
-  final _dataController = TextEditingController();
-  final _descriptionController = TextEditingController();
+  TextEditingController _nameController = TextEditingController();
+  TextEditingController _dataController = TextEditingController();
+  TextEditingController _descriptionController = TextEditingController();
 
   final _nameFocus = FocusNode();
 
@@ -33,7 +34,7 @@ class _addListPageState extends State<addListPage> {
               onWillPop: _requestPop,
               child: Scaffold(
                 appBar: AppBar(
-                  backgroundColor: Colors.red,
+                  backgroundColor: Theme.of(context).primaryColor,
                   title: Text("Nova Lista"),
                   centerTitle: true,
                 ),
@@ -78,7 +79,7 @@ class _addListPageState extends State<addListPage> {
                             keyboardType: TextInputType.text,
                           ),
                           RaisedButton(
-                            child: Text("Criar Conta",
+                            child: Text("Criar Lista",
                               style: TextStyle(
                                 fontSize: 18.0,
                               ),

@@ -62,12 +62,12 @@ class _LoginPageState extends State<LoginPage> {
     );
 
     final googleFB = FloatingActionButton(
-      child: Image(image: AssetImage("assets/images/google_button.png")),
+      child: Image(image: AssetImage("assets/google_icon.png")),
       onPressed: () {},
     );
 
     final facebookFB = FloatingActionButton(
-      child: Image(image: AssetImage("assets/images/fb_button.png")),
+      child: Image(image: AssetImage("assets/fb_icon.png")),
       onPressed: () {
 
       },
@@ -91,7 +91,7 @@ class _LoginPageState extends State<LoginPage> {
       child: Text(
         "SIGN UP",
         style: TextStyle(
-            color: Colors.pink,
+            color: Theme.of(context).primaryColor,
             fontSize: 18
         ),
       ),
@@ -150,7 +150,7 @@ class _LoginPageState extends State<LoginPage> {
                        padding: EdgeInsets.fromLTRB(40, 0, 40, 0),
                        height: 55,
                        child : Card(
-                           color: Colors.pink,
+                           color: Theme.of(context).primaryColor,
                            shape: RoundedRectangleBorder(
                                borderRadius: BorderRadius.all(
                                    Radius.circular(50.0)

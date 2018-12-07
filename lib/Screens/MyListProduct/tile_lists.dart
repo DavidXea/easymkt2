@@ -1,6 +1,5 @@
 import 'package:easymkt2/Screens/MyListProduct/listList.dart';
 import 'package:easymkt2/datas/list_list_product.dart';
-import 'package:easymkt2/datas/list_product.dart';
 import 'package:flutter/material.dart';
 
 class ListaTile extends StatelessWidget {
@@ -14,7 +13,7 @@ class ListaTile extends StatelessWidget {
     return InkWell(
       onTap: (){
 //        Navigator.of(context).push(
-//            MaterialPageRoute(builder: (context)=>ProductScreen(list))
+//            MaterialPageRoute(builder: (context)=>ProductListScreen(list))
 //        );
       },
       child: GestureDetector(
@@ -54,6 +53,7 @@ class ListaTile extends StatelessWidget {
             ),
           ),
         ),
+
         onTap: (){
           Navigator.of(context).push(
               MaterialPageRoute(builder: (context)=>ProductListScreen(list))

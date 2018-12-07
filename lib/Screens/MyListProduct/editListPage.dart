@@ -108,11 +108,6 @@ class _EditListPageState extends State<EditListPage> {
                                   list.description = _descriptionController.text;
                                   list.data = _dataController.text;
 
-                                  Map<String, dynamic> ProductListList={
-                                    "title":_nameController.text,
-                                    "data": _dataController.text,
-                                    "description": _descriptionController.text
-                                  };
                                   model.updateList(productList: list);
                                   Navigator.of(context).pop();
                                 }

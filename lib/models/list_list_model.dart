@@ -33,11 +33,12 @@ class ListProductModel extends Model{
 
   }
 
-  void removeList(ListProduct listList){
-    Firestore.instance.collection("users").document(user.firebaseUser.uid)
-        .collection("lists").document(listList.cid).delete();
+  void removeList({ProductListList productList}){
 
-    lists.remove(listList);
+    Firestore.instance.collection("users").document(user.firebaseUser.uid).collection("lists").
+    document(productList.lid).delete();
+
+    lists.remove(productList);
 
     notifyListeners();
   }

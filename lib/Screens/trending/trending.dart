@@ -1,9 +1,8 @@
 import 'dart:io';
 
 import 'package:easymkt2/Screens/MyListProduct/ProductDetail/ProductDetailPage.dart';
-import 'package:url_launcher/url_launcher.dart';
+
 import 'package:easymkt2/Class/Product.dart';
-import 'package:easymkt2/Class/ShoppingList.dart';
 import 'package:flutter/material.dart';
 
 enum OrderOptions {orderaz, orderza}
@@ -83,10 +82,10 @@ class _HomePageBodyState extends State<TrendingListPage> {
       backgroundColor: Colors.white,
       floatingActionButton: FloatingActionButton(
         onPressed: (){
-          _showContactPage();
+
         },
         child: Icon(Icons.add),
-        backgroundColor: Colors.red,
+        backgroundColor: Theme.of(context).primaryColor,
       ),
 
 

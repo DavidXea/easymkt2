@@ -60,7 +60,7 @@ class _HomePageBodyState extends State<HomePageBody> {
           );
         },
         child: Icon(Icons.add),
-        backgroundColor: Colors.red,
+        backgroundColor: Theme.of(context).primaryColor,
       ),
 
         body: ScopedModelDescendant<ListProductModel>(

@@ -1,6 +1,10 @@
 import 'package:easymkt2/Screens/MyListProduct/editListPage.dart';
+import 'package:easymkt2/Screens/MyListProduct/myListsWidget.dart';
+import 'package:easymkt2/Screens/home_screen.dart';
 import 'package:easymkt2/datas/list_list_product.dart';
+import 'package:easymkt2/models/list_list_model.dart';
 import 'package:flutter/material.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 class ProductListScreen extends StatefulWidget {
 
@@ -22,6 +26,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
 
   @override
   Widget build(BuildContext context) {
+    int volta = 0;
 
     return Scaffold(
       appBar: AppBar(
@@ -34,19 +39,31 @@ class _ProductListScreenState extends State<ProductListScreen> {
                   child: GestureDetector(
                         onTap: (){
                           Navigator.of(context).pushReplacement(
-                            MaterialPageRoute(builder: (context) => EditListPage(list))
-                        );
-//                          model.updateList(list);
+                              MaterialPageRoute(builder: (context) => EditListPage(list))
+                          );
                           },
-                        child: Text(
-                            "Editar"
-                        ),
+                          child: Text(
+                              "Editar        "
+                          ),
+
                       ),
 //                value: OrderOptions.orderaz,
                 ),
                 PopupMenuItem(
-                  child: Text("Excluir"),
-//                value: OrderOptions.orderza,
+                  child:    ScopedModelDescendant<ListProductModel>(
+                      builder: (context, child, model){
+                        return GestureDetector(
+                          onTap: (){
+                            Navigator.of(context).pop();
+                            Navigator.of(context).pop();
+                            model.removeList(productList: list);
+                            },
+                          child: Text(
+                              "Excluir        "
+                          ),
+                        );
+                      }
+                      ),
                 ),
               ],
             ),
@@ -67,12 +84,13 @@ class _ProductListScreenState extends State<ProductListScreen> {
                   ),
                   maxLines: 3,
                 ),
-                SizedBox(height: 16.0,),
+                SizedBox(height: 16.0, ),
                 Text(
-                  list.data,
+                  "Data : "+list.data,
                   style: TextStyle(
                       fontSize: 16.0,
-                      fontWeight: FontWeight.w500
+                      fontWeight: FontWeight
+                          .w500
                   ),
                 ),
                 SizedBox(
@@ -122,7 +140,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
 //                    textColor: Colors.white,
 //                  ),
 //                ),
-                SizedBox(height: 16.0,),
+                SizedBox(height: 16.0, ),
                 Text(
                   "Descrição",
                   style: TextStyle(
@@ -132,15 +150,18 @@ class _ProductListScreenState extends State<ProductListScreen> {
                 ),
                 Text(
                   list.description,
-                  style: TextStyle(
+                  style
+                      : TextStyle(
                       fontSize: 16.0
                   ),
                 )
-              ],
+              ]
+              ,
             ),
           )
         ],
       ),
-    );
+      );
   }
 }
+

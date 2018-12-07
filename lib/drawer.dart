@@ -14,7 +14,6 @@ Widget drawer(context){
               return Container(
                 height: 180.0,
                 child: new UserAccountsDrawerHeader(
-
                   /// EMAIL ///
                   accountEmail: Text("${!model.isLoggedIn() ? "" : model.userData["email"]}",
                     style: TextStyle(

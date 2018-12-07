@@ -12,7 +12,6 @@ class ListProduct{
   String description;
   String title;
 
-
   ProductData productData;
 
   ListProduct();

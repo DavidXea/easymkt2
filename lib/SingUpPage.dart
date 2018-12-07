@@ -24,6 +24,7 @@ class _SingUpPageState extends State<SingUpPage> {
 
   @override
   Widget build(BuildContext context) {
+
     final address = TextFormField(
       controller: _addressController,
       autofocus: false,

@@ -35,7 +35,7 @@ class _HomeState extends State<Home> {
         return Search();
       case 3:
         _title_page = 'Minhas Listas';
-        return ListPage();
+        return listaListPage();
         break;
         default:
           return Recommended();

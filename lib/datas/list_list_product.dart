@@ -6,6 +6,7 @@ class ProductListList{
 
   String description;
   String title;
+  String data;
   String lpId;
 
   ListProduct listProduct;
@@ -16,13 +17,14 @@ class ProductListList{
     lid = document.documentID;
     description = document.data["description"];
     title = document.data["title"];
+    data = document.data["data"];
   }
 
   Map<String, dynamic> toMap(){
     return{
       "description": description,
       "title": title,
-      "list": listProduct
+      "data": data
     };
   }
 }

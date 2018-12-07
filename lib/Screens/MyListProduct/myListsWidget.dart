@@ -1,12 +1,12 @@
-import 'dart:io';
-
-import 'package:easymkt2/Class/ShoppingList.dart';
-import 'package:easymkt2/Screens/MyListProduct/ProductList/ProductListPage.dart';
 import 'package:easymkt2/Screens/MyListProduct/addListPage.dart';
+import 'package:easymkt2/Screens/MyListProduct/tile_lists.dart';
+import 'package:easymkt2/datas/list_list_product.dart';
+import 'package:easymkt2/models/list_list_model.dart';
 import 'package:flutter/material.dart';
+import 'package:scoped_model/scoped_model.dart';
 enum OrderOptions {orderaz, orderza}
 
-class ListPage extends StatelessWidget {
+class listaListPage extends StatelessWidget {
   static String tag = 'ListPage';
 
   @override
@@ -23,31 +23,8 @@ class HomePageBody extends StatefulWidget {
 }
 
 class _HomePageBodyState extends State<HomePageBody> {
-  ListHelper helper = ListHelper();
 
-  List<ShoppingList> lists = List();
-
-  @override
-  void initState() {
-    super.initState();
-
-//    ShoppingList l = ShoppingList();
-//
-//    l.name ="Lista 1";
-//    l.price = "99.9";
-//    l.data = "1";
-//    l.img = "assets/berinjela.jpg";
-//
-//    helper.saveList(l);
-
-    helper.getAllContacts().then((list){
-      print(list);
-    });
-
-
-
-    _getAllContacts();
-  }
+  ProductListList list = ProductListList();
 
   @override
   Widget build(BuildContext context) {
@@ -73,67 +50,48 @@ class _HomePageBodyState extends State<HomePageBody> {
 //        ],
 //      ),
 
+
+
       backgroundColor: Colors.white,
       floatingActionButton: FloatingActionButton(
         onPressed: (){
-
-          _showContactPage();
-
+          Navigator.of(context).push(
+              MaterialPageRoute(builder: (context)=>addListPage())
+          );
         },
         child: Icon(Icons.add),
         backgroundColor: Colors.red,
       ),
 
+        body: ScopedModelDescendant<ListProductModel>(
 
-      body: ListView.builder(
-          padding: EdgeInsets.all(10.0),
-          itemCount: lists.length,
-          itemBuilder: (context, index) {
-            return _listCard(context, index);
-          }
-      ),
-    );
-  }
-  Widget _listCard(BuildContext context, int index){
-    return GestureDetector(
-      child: Card(
-        child: Padding(
-          padding: EdgeInsets.all(10.0),
-          child: Row(
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.only(left: 10.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(lists[index].name ?? "",
-                      style: TextStyle(fontSize: 22.0,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    Text(lists[index].data ?? "",
-                      style: TextStyle(fontSize: 18.0),
-                    ),
-                    Text(lists[index].price ?? "",
-                      style: TextStyle(fontSize: 18.0),
-                    )
-                  ],
-                ),
-              )
-            ],
+            builder: (context, child, model){
+              return  ListView(
+                children: <Widget>[
+                  Column(
+                    children: model.lists.map(
+                    (list){
+                  return ListaTile(list);
+                }
+            ).toList(),
           ),
-        ),
-      ),
-      onTap: (){
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => ProductListPage(lists[index]))
-        );
-//        lists[index]
-
-
-//        _showOptions(context, index);
-      },
+//          DiscountCard(),
+//          ShipCard(),
+//          CartPrice(() async {
+//            String orderId = await model.finishOrder();
+//            if(orderId != null)
+//              Navigator.of(context).pushReplacement(
+//                  MaterialPageRoute(builder: (context)=>OrderScreen(orderId))
+//              );
+//          }),
+        ],
+      );
+    }
+    )
     );
   }
+
+
 
 //  void _showOptions(BuildContext context, int index){
 //    showModalBottomSheet(
@@ -195,19 +153,19 @@ class _HomePageBodyState extends State<HomePageBody> {
 //    );
 //  }
 
-  void _showContactPage({ShoppingList list}) async {
-    final recContact = await Navigator.push(context,
-        MaterialPageRoute(builder: (context) => addListPage())
-    );
-    if(recContact != null){
-      if(list != null){
-        await helper.updateContact(recContact);
-      } else {
-        await helper.saveList(recContact);
-      }
-      _getAllContacts();
-    }
-  }
+//  void _showContactPage({ShoppingList list}) async {
+//    final recContact = await Navigator.push(context,
+//        MaterialPageRoute(builder: (context) => addListPage())
+//    );
+//    if(recContact != null){
+//      if(list != null){
+//        await helper.updateContact(recContact);
+//      } else {
+//        await helper.saveList(recContact);
+//      }
+//      _getAllContacts();
+//    }
+//  }
 
 //  void _orderList(OrderOptions result){
 //    switch(result){
@@ -227,14 +185,6 @@ class _HomePageBodyState extends State<HomePageBody> {
 //    });
 //  }
 
-
-  void _getAllContacts(){
-    helper.getAllContacts().then((list){
-      setState(() {
-        lists = list;
-      });
-    });
-  }
 }
 
 
